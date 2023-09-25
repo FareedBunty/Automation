@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt update
 # JSON data with the new email address
 DATA='{
     "useremail": "fareed.ahmad@ebryx.com"
