@@ -1,6 +1,6 @@
 import java.net.Socket
 
-def host = 'localhost' // replace with your Jenkins host
+def host = '13.126.210.90' // replace with your Jenkins host
 def port = 8080 // replace with your Jenkins port
 
 try {
