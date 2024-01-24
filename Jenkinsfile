@@ -30,11 +30,11 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo 'Deploying the application'
-                withCredentials([
-                    usernamePassword(credentials: 'fareed-gmail', userVariable: USER , passVariable: PWD)
-                ]) {
-                    sh "some scripts ${USER} ${PWD}"
-                }
+                //withCredentials([
+                  //  usernamePassword(credentials: 'fareed-gmail', userVariable: USER , passVariable: PWD)
+                //]) {
+                  //  sh "some scripts ${USER} ${PWD}"
+                //}
                 echo "Deploying the application ${params.Version}"
             }
         }
