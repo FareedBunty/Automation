@@ -18,10 +18,12 @@ pipeline {
             }
         }
         stage("Test") {
+            when {
+                expression{
+                    params.ExecuteBUILD
+                }
+            }
             steps {
-                    when {
-                params.ExecuteBUILD
-                  }
                 echo 'Testing the application'
             }
         }
