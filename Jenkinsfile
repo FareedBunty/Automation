@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    parameters{
+        // string(name: 'Version', defaultValue: '', description: 'FOR QA ENV')
+        choice(name: 'Version', choices: ['0.1','0.2','0.3'], description: '')
+        booleanParam(name: 'ExecuteBUILD', defaultValue: true, description: '')
+    }
+    tools {                               //THESE ARE ADDED FOR BUILD TOOLS, Only 3 available MAVEN,GRADLE, JDK 
+        
+    }
     environment{
         JOB_NAME = 'Fareed-test'
         SERVER_CREDENTIALS = credentials('fareed-gmail')
@@ -12,6 +20,9 @@ pipeline {
             }
         }
         stage("Test") {
+            when {
+                exec.ExecuteBUILD
+            }
             steps {
                 echo 'Testing the application'
             }
@@ -24,6 +35,7 @@ pipeline {
                 ]) {
                     sh "some scripts ${USER} ${PWD}"
                 }
+                echo "Deploying the application ${params.Version}"
             }
         }
     }
