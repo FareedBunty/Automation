@@ -5,10 +5,7 @@ pipeline {
         choice(name: 'Version', choices: ['0.1','0.2','0.3'], description: '')
         booleanParam(name: 'ExecuteBUILD', defaultValue: true, description: '')
     }
-    tools {       
-        //THESE ARE ADDED FOR BUILD TOOLS, Only 3 available MAVEN,GRADLE, JDK 
-        echo 'i am in tools section'
-    }
+
     environment{
         JOB_NAME = 'Fareed-test'
         SERVER_CREDENTIALS = credentials('fareed-gmail')
@@ -21,10 +18,10 @@ pipeline {
             }
         }
         stage("Test") {
-            when {
-                exec.ExecuteBUILD
-            }
             steps {
+                    when {
+                exec.ExecuteBUILD
+                  }
                 echo 'Testing the application'
             }
         }
