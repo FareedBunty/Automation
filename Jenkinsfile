@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        JOB_NAME
+        JOB_NAME = 'Fareed-test'
     }
     stages {
         stage("Build") {
@@ -19,6 +19,17 @@ pipeline {
             steps {
                 echo 'Deploying the application'
             }
+        }
+    }
+    post{
+        always{
+            echo "This will run everytime whether the build is same or changes"
+        }
+        success{
+            echo "This portion will run only if build will be successfully build"
+        }
+        failure{
+            echo "This portion will run only if build is failure" 
         }
     }
 }
