@@ -19,8 +19,8 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo 'Deploying the application'
-                echo "Deploying with credentials $(SERVER_CREDENTIALS)"
-                sh "$(SERVER_CREDENTIALS)"
+                echo "Deploying with credentials ${SERVER_CREDENTIALS}"
+                sh "${SERVER_CREDENTIALS}"
             }
         }
     }
