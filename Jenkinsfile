@@ -1,9 +1,13 @@
 pipeline {
     agent any
+    environment{
+        JOB_NAME
+    }
     stages {
         stage("Build") {
             steps {
                 echo 'Building the application'
+                echo $JOB_NAME
             }
         }
         stage("Test") {
