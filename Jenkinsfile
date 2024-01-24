@@ -20,7 +20,7 @@ pipeline {
         stage("Test") {
             steps {
                     when {
-                exec.ExecuteBUILD
+                params.ExecuteBUILD
                   }
                 echo 'Testing the application'
             }
