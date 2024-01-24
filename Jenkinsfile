@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
         JOB_NAME = 'Fareed-test'
+        SERVER_CREDENTIALS = credentials('fareed-gmail')
     }
     stages {
         stage("Build") {
@@ -18,6 +19,8 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo 'Deploying the application'
+                echo "Deploying with credentials $(SERVER_CREDENTIALS)"
+                sh "$(SERVER_CREDENTIALS)"
             }
         }
     }
