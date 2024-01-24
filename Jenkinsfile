@@ -7,7 +7,7 @@ pipeline {
         stage("Build") {
             steps {
                 echo 'Building the application'
-                echo $JOB_NAME
+                echo JOB_NAME
             }
         }
         stage("Test") {
@@ -23,7 +23,7 @@ pipeline {
     }
     post{
         always{
-            echo "This will run everytime whether the build is same or changes"
+            echo "This will run everytime whether the build is success or failed"
         }
         success{
             echo "This portion will run only if build will be successfully build"
