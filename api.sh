@@ -1,2 +1,3 @@
 #!/bin/bash
-sudo apt update
+npm --version
+ls -al
