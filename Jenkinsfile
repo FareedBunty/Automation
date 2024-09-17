@@ -1,15 +1,5 @@
 pipeline {
     agent any
-    parameters{
-        // string(name: 'Version', defaultValue: '', description: 'FOR QA ENV')
-        choice(name: 'Version', choices: ['0.1','0.2','0.3'], description: '')
-        booleanParam(name: 'ExecuteBUILD', defaultValue: true, description: '')
-    }
-
-    environment{
-        JOB_NAME = 'fareed-test-pipeline'
-        SERVER_CREDENTIALS = credentials('fareed-gmail')
-    }
     stages {
         stage("Build") {
             steps {
@@ -18,11 +8,7 @@ pipeline {
             }
         }
         stage("Test") {
-            when {
-                expression{
-                    params.ExecuteBUILD
-                }
-            }
+            
             steps {
                 echo 'Testing the application'
             }
