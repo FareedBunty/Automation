@@ -1,3 +1,4 @@
+def gv
 pipeline {
     agent any
     parameters {
@@ -13,8 +14,9 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                echo 'Building the application'
-                echo "Job name: ${JOB_NAME}"
+                script{
+                    gv.buildAPP()
+                }
             }
         }
         stage("Test") {
@@ -24,13 +26,16 @@ pipeline {
                 }
             }
             steps {
-                echo 'Testing the application'
+                script{
+                    gv.testAPP()
+                }
             }
         }
         stage("Deploy") {
             steps {
-                echo 'Deploying the application'
-                echo "Deploying version: ${params.Version}"
+                script{
+                    gv.deployAPP()
+                }
             }
         }
     }
