@@ -7,7 +7,7 @@ pipeline {
 
     environment {
         JOB_NAME = 'fareed-test-pipeline'
-        SERVER_CREDENTIALS = credentials('fareed-gmail')
+        SERVER_CREDENTIALS = credentials('server-creds')
     }
 
     stages {
