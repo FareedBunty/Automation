@@ -1,4 +1,3 @@
-def gv
 pipeline {
     agent any
     parameters {
@@ -12,10 +11,18 @@ pipeline {
     }
 
     stages {
+        stage("Load Script") {
+            steps {
+                script {
+                    // Load the external Groovy script into 'gv'
+                    gv = load 'script.groovy'
+                }
+            }
+        }
         stage("Build") {
             steps {
-                script{
-                    gv.buildAPP()
+                script {
+                    gv.buildAPP() // Call method from the loaded script
                 }
             }
         }
@@ -26,15 +33,15 @@ pipeline {
                 }
             }
             steps {
-                script{
-                    gv.testAPP()
+                script {
+                    gv.testAPP() // Call method from the loaded script
                 }
             }
         }
         stage("Deploy") {
             steps {
-                script{
-                    gv.deployAPP()
+                script {
+                    gv.deployAPP(params.Version) // Pass the 'Version' parameter correctly
                 }
             }
         }
