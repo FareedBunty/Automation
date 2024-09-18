@@ -1,13 +1,12 @@
-def buildAPP()
-{
-  echo "Building The Application"    
+def buildAPP() {
+    echo "Building the Application"
 }
-def testAPP()
-{
-  echo "TestingThe Application"    
+
+def testAPP() {
+    echo "Testing the Application"
 }
-def deployAPP()
-{
-  echo "Deploying The Application"
-  echo "Deploying The Version ${params.VERSION}
+
+def deployAPP(version) {
+    echo "Deploying the Application"
+    echo "Deploying Version: ${version}" // Correct version parameter passed
 }
