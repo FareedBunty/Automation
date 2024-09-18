@@ -10,3 +10,5 @@ def deployAPP(version) {
     echo "Deploying the Application"
     echo "Deploying Version: ${version}" // Correct version parameter passed
 }
+
+return this
