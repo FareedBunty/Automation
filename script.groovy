@@ -9,5 +9,5 @@ def testAPP()
 def deployAPP()
 {
   echo "Deploying The Application"
-  echo "Deploying The Version ${param.VERSION}
+  echo "Deploying The Version ${params.VERSION}
 }
