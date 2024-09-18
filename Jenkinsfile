@@ -1,14 +1,28 @@
 pipeline {
     agent any
+    parameters {
+        choice(name: 'Version', choices: ['0.1', '0.2', '0.3'], description: 'Select Version for deployment')
+        booleanParam(name: 'ExecuteBUILD', defaultValue: true, description: 'Execute build phase?')
+    }
+
+    environment {
+        JOB_NAME = 'fareed-test-pipeline'
+        SERVER_CREDENTIALS = credentials('fareed-gmail')
+    }
+
     stages {
         stage("Build") {
             steps {
                 echo 'Building the application'
-                echo JOB_NAME
+                echo "Job name: ${JOB_NAME}"
             }
         }
         stage("Test") {
-            
+            when {
+                expression {
+                    return params.ExecuteBUILD
+                }
+            }
             steps {
                 echo 'Testing the application'
             }
@@ -16,19 +30,20 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo 'Deploying the application'
-                echo "Deploying the application ${params.Version}"
+                echo "Deploying version: ${params.Version}"
             }
         }
     }
-    post{
-        always{
-            echo "This will run everytime whether the build is success or failed"
+
+    post {
+        always {
+            echo "This will run regardless of build success or failure."
         }
-        success{
-            echo "This portion will run only if build will be successfully build"
+        success {
+            echo "The build was successful!"
         }
-        failure{
-            echo "This portion will run only if build is failure" 
+        failure {
+            echo "The build failed."
         }
     }
 }
