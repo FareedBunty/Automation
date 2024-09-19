@@ -1,33 +1,33 @@
 pipeline {
     agent any
-    parameters{
-        // string(name: 'Version', defaultValue: '', description: 'FOR QA ENV')
-        choice(name: 'Version', choices: ['0.1','0.2','0.3'], description: '')
-        booleanParam(name: 'ExecuteBUILD', defaultValue: true, description: '')
-    }
-
-    environment{
-        JOB_NAME = 'Fareed-test'
-        SERVER_CREDENTIALS = credentials('fareed-gmail')
-    }
-    stages {
+      stages {
+        stage("Test") {
+           steps {
+                script{
+                    echo 'Testing the application'
+                    echo 'Executing pipeline for multip branch $branch_name'
+                }
+                
+            }
+        }
+          
         stage("Build") {
+            when {
+                expression{
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 echo 'Building the application'
                 echo JOB_NAME
             }
         }
-        stage("Test") {
-            when {
+        stage("Deploy") {
+             when {
                 expression{
-                    params.ExecuteBUILD
+                    BRANCH_NAME == 'master'
                 }
             }
-            steps {
-                echo 'Testing the application'
-            }
-        }
-        stage("Deploy") {
             steps {
                 echo 'Deploying the application'
                 echo "Deploying the application ${params.Version}"
