@@ -5,7 +5,7 @@ pipeline {
            steps {
                 script{
                     echo 'Testing the application'
-                    echo 'Executing pipeline for multip branch $branch_name'
+                    echo 'Executing pipeline for multip branch $BRANCH_NAME'
                 }
                 
             }
